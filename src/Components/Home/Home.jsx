@@ -2,13 +2,15 @@ import { useLoaderData } from "react-router-dom";
 import Banner from "../Banner/Banner";
 import Categories from "../Categories/Categories";
 import "./Home.css";
+import Features from "../Features/Features";
 const Home = () => {
-  const {categories,jobs} = useLoaderData();
-  
+  const { categories, jobs } = useLoaderData();
+
   return (
     <div className="px-10 container mx-auto">
       <Banner />
-      <Categories categories={categories}/>
+      <Categories categories={categories} />
+      <Features jobs={jobs} />
     </div>
   );
 };
