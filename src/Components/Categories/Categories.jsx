@@ -2,11 +2,10 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import Category from "../Category/Category";
 
-const Categories = () => {
-  
+const Categories = ({categories}) => {
   return (
     <section>
-      {/* <div className="text-center py-5">
+      <div className="text-center py-5">
         <h2 className="text-3xl font-bold">Job Category List</h2>
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi,
@@ -14,10 +13,10 @@ const Categories = () => {
         </p>
       </div>
       <div className="grid grid-cols-4 gap-4 my-8">
-        {catagories.map((category) => (
+        {categories.map((category) => (
           <Category key={category.id} category={category} />
         ))}
-      </div> */}
+      </div>
     </section>
   );
 };

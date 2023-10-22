@@ -7,7 +7,7 @@ const Header = () => {
       <Navbar rounded>
         <Navbar.Brand as={Link} to="/">
           <span className="self-center whitespace-nowrap text-xl font-extrabold dark:text-white">
-            DevHub
+            JobHub
           </span>
         </Navbar.Brand>
         <div className="flex md:order-2">

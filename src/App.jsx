@@ -15,10 +15,10 @@ function App() {
         {
           path: "/",
           element: <Home />,
-          loader: async({param}) => {
-            const remain =await fetch("categories.json").then((res) => res.json());
-            const root = await fetch("jobs.json").then((res) => res.json());
-            return { remain, root };
+          loader: async() => {
+            const categories =await fetch("categories.json").then((res) => res.json());
+            const jobs = await fetch("jobs.json").then((res) => res.json());
+            return { categories, jobs };
           },
         },
         {
