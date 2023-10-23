@@ -7,7 +7,7 @@ const Home = () => {
   const { categories, jobs } = useLoaderData();
 
   return (
-    <div className="px-10 container mx-auto">
+    <div className="px-12 container mx-auto">
       <Banner />
       <Categories categories={categories} />
       <Features jobs={jobs} />

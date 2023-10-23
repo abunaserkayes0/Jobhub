@@ -1,8 +1,7 @@
-import { Card } from "flowbite-react";
+import { Button, Card } from "flowbite-react";
 import React from "react";
 
 const SingleFeature = ({ job }) => {
-
   const {
     logo,
     job_title,
@@ -42,6 +41,7 @@ const SingleFeature = ({ job }) => {
             {salary}
           </span>
         </div>
+        <Button className="w-40 bg-purple-700 text-white">View Details</Button>
       </Card>
     </>
   );
