@@ -5,6 +5,7 @@ import Statistics from "./Components/Statistics/Statistics";
 import Jobs from "./Components/Jobs/Jobs";
 import Blog from "./Components/Blog/Blog";
 import Main from "./Components/Layout/Main";
+import JobDetails from "./Components/JobDetails/JobDetails";
 
 function App() {
   const router = createBrowserRouter([
@@ -15,8 +16,10 @@ function App() {
         {
           path: "/",
           element: <Home />,
-          loader: async() => {
-            const categories =await fetch("categories.json").then((res) => res.json());
+          loader: async () => {
+            const categories = await fetch("categories.json").then((res) =>
+              res.json()
+            );
             const jobs = await fetch("jobs.json").then((res) => res.json());
             return { categories, jobs };
           },
@@ -28,6 +31,16 @@ function App() {
         {
           path: "/applied-jobs",
           element: <Jobs />,
+        },
+        {
+          path: "/job/:jobId",
+          element: <JobDetails />,
+          loader: async ({ params }) => {
+            const id = parseInt(params.jobId);
+            const jobs = await fetch("jobs.json").then((res) => res.json());
+            const findingJob = jobs.find((job) => job.id === id);
+            return { findingJob };
+          },
         },
         {
           path: "/blog",

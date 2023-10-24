@@ -9,10 +9,26 @@ const Footer = () => {
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
               <Link to="/" className="flex items-center">
-                <span className="self-center text-2xl font-semibold whitespace-nowrap ">
+                <span className="self-center text-2xl font-semibold whitespace-nowrap pb-4">
                   JobHub
                 </span>
               </Link>
+              <p className="w-96 font-thin pb-4">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.Aliquid
+                suscipit dolorem fugit numquam iusto corrupti dignissimos iste
+                fuga repellat dicta!
+              </p>
+              <div className="flex">
+                <a href="#" className="mr-4 bg-white p-1 rounded-full">
+                  <img src="https://i.ibb.co/tmKQ5Bq/facebook.png" alt="" />
+                </a>
+                <a href="#" className="mr-4 bg-white p-1 rounded-full">
+                  <img src="https://i.ibb.co/9bk09Kb/twitter.png" alt="" />
+                </a>
+                <a href="#" className="mr-4 bg-white p-1 rounded-full">
+                  <img src="https://i.ibb.co/80KY40S/instagram.png" alt="" />
+                </a>
+              </div>
             </div>
             <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-4">
               <div>
@@ -130,7 +146,7 @@ const Footer = () => {
           </div>
           <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
           <div className="sm:flex sm:items-center sm:justify-between">
-            <span className="text-sm  sm:text-center">
+            <span className="text-sm sm:text-center">
               © 2023{" "}
               <a href="https://flowbite.com/" className="hover:underline">
                 JobHub

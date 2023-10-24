@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div>
       <Navbar rounded>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link}  to="/">
           <span className="self-center whitespace-nowrap text-xl font-extrabold dark:text-white">
             JobHub
           </span>

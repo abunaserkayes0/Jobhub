@@ -1,8 +1,11 @@
 import { Button, Card } from "flowbite-react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const SingleFeature = ({ job }) => {
+  // console.log(job);
   const {
+    id,
     logo,
     job_title,
     company_name,
@@ -11,6 +14,7 @@ const SingleFeature = ({ job }) => {
     location,
     salary,
   } = job;
+  const navigate = useNavigate();
   return (
     <>
       <Card>
@@ -32,16 +36,21 @@ const SingleFeature = ({ job }) => {
           </button>
         </div>
         <div className="flex">
-          <span className="flex mr-2">
+          <span className="flex mr-2 text-gray-500">
             <img src="https://i.ibb.co/DMrGT6r/location.png" alt="" />
             {location}
           </span>
-          <span className="flex mx-2">
+          <span className="flex mx-2 text-gray-500">
             <img src="https://i.ibb.co/55nkgTq/money.png" alt="" />
             {salary}
           </span>
         </div>
-        <Button className="w-40 bg-purple-700 text-white">View Details</Button>
+        <Button
+          onClick={() => navigate(`/job/${id}`)}
+          className="w-40 bg-purple-700 text-white"
+        >
+          View Details
+        </Button>
       </Card>
     </>
   );
