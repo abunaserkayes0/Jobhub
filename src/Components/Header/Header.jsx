@@ -1,11 +1,12 @@
 import { Button, Navbar } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate=useNavigate();
   return (
     <div>
       <Navbar rounded>
-        <Navbar.Brand as={Link}  to="/">
+        <Navbar.Brand as={Link} onClick={()=>navigate('/')}>
           <span className="self-center whitespace-nowrap text-xl font-extrabold dark:text-white">
             JobHub
           </span>

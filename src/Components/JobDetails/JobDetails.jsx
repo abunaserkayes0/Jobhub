@@ -1,9 +1,11 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import "./JobDetails.css";
 import { Button, Card } from "flowbite-react";
 const JobDetails = () => {
-  const { findingJob } = useLoaderData();
+  const { id,jobs } = useLoaderData();
+  const findingJob=jobs.find(job=>job.id===id);
+
   const {
     job_description,
     job_responsibility,
@@ -12,7 +14,7 @@ const JobDetails = () => {
     contact_information: { address, email, phone },
     job_title,
     salary,
-  } = findingJob;
+  } = findingJob; 
   return (
     <>
       <div className="jobs-details_heading">
@@ -79,14 +81,13 @@ const JobDetails = () => {
                 {phone}
               </p>
             </div>
-            <Button className="bg-purple-700 text-white">
-              <p>Read more</p>
-            </Button>
+            <Button className="bg-purple-700 text-white">Applied</Button>
           </Card>
         </div>
       </div>
-    </>
-  );
-};
+    </> 
+  )
+    
+  };
 
 export default JobDetails;

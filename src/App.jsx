@@ -6,6 +6,7 @@ import Jobs from "./Components/Jobs/Jobs";
 import Blog from "./Components/Blog/Blog";
 import Main from "./Components/Layout/Main";
 import JobDetails from "./Components/JobDetails/JobDetails";
+import Cart from "./Components/Cart/Cart";
 
 function App() {
   const router = createBrowserRouter([
@@ -37,10 +38,13 @@ function App() {
           element: <JobDetails />,
           loader: async ({ params }) => {
             const id = parseInt(params.jobId);
-            const jobs = await fetch("jobs.json").then((res) => res.json());
-            const findingJob = jobs.find((job) => job.id === id);
-            return { findingJob };
+            const jobs=await fetch("jobs.json").then(res=>res.json())
+            return { id,jobs };
           },
+        },
+        {
+          path:"/cart",
+          element:<Cart/>,
         },
         {
           path: "/blog",

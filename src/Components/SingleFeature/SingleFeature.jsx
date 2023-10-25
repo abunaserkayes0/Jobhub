@@ -3,7 +3,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const SingleFeature = ({ job }) => {
-  // console.log(job);
   const {
     id,
     logo,
