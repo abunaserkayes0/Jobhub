@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import "./JobDetails.css";
-import { Button, Card } from "flowbite-react";
+import { Button, Card, Spinner } from "flowbite-react";
 const JobDetails = () => {
-  const { id,jobs } = useLoaderData();
-  const findingJob=jobs.find(job=>job.id===id);
+  const { id } = useLoaderData();
+  const [job, setJob] = useState([]);
 
-  const {
-    job_description,
-    job_responsibility,
-    educational_requirements,
-    experiences,
-    contact_information: { address, email, phone },
-    job_title,
-    salary,
-  } = findingJob; 
-  return (
+  useEffect(() => {
+    dataFetching();
+  }, [id]);
+
+  const dataFetching = async () => {
+    const jobs = await (await fetch("./../../jobs.json")).json();
+    const findJob = jobs.find((job) => job.id === id);
+    setJob(findJob);
+  };
+
+  return Object.keys(job).length ? (
     <>
       <div className="jobs-details_heading">
         <h2 className="text-3xl font-bold text-center py-20">Job Details</h2>
@@ -24,12 +25,12 @@ const JobDetails = () => {
         <div>
           <p>
             <b>Job Description:</b>
-            {job_description}
+            {job?.job_description}
           </p>
           <br />
           <p>
             <b>Job Responsibility:</b>
-            {job_responsibility}
+            {job?.job_responsibility}
           </p>
           <br />
           <p>
@@ -37,13 +38,13 @@ const JobDetails = () => {
               Educational Requirement:
               <br />
             </b>
-            {educational_requirements}
+            {job?.educational_requirements}
           </p>
           <br />
           <p>
             <b>Experience:</b>
             <br />
-            {experiences}
+            {job?.experiences}
           </p>
         </div>
         <div className="flex place-content-center">
@@ -54,12 +55,12 @@ const JobDetails = () => {
               <p className="flex align-middle font-normal text-gray-700 dark:text-gray-400">
                 <img src="https://i.ibb.co/5jCd2V8/calendar.png" alt="" />
                 <b>Salary:</b>
-                {job_title}
+                {job?.job_title}
               </p>
               <p className="flex align-middle font-normal text-gray-700 dark:text-gray-400">
                 <img src="https://i.ibb.co/Kq6B9Xn/money.png" alt="" />
                 <b>Job-Title:</b>
-                {salary}
+                {job?.salary}
               </p>
             </div>
             <div>
@@ -68,26 +69,35 @@ const JobDetails = () => {
               <p className="flex align-middle font-normal text-gray-700 dark:text-gray-400">
                 <img src="https://i.ibb.co/qjy9bHG/location.png" alt="" />
                 <b>Address:</b>
-                {address}
+                {job?.contact_information?.address}
               </p>
               <p className="flex align-middle font-normal text-gray-700 dark:text-gray-400">
                 <img src="https://i.ibb.co/GQCC7Z4/email.png" alt="" />
                 <b>Email:</b>
-                {email}
+                {job?.contact_information?.email}
               </p>
               <p className="flex align-middle font-normal text-gray-700 dark:text-gray-400">
                 <img src="https://i.ibb.co/x59zJWG/phone.png" alt="" />
                 <b>Phone:</b>
-                {phone}
+                {job?.contact_information?.phone}
               </p>
             </div>
             <Button className="bg-purple-700 text-white">Applied</Button>
           </Card>
         </div>
       </div>
-    </> 
-  )
-    
-  };
+    </>
+  ) : (
+    <>
+      <div className="flex place-content-center my-80">
+      <Spinner
+        className="text-purple-500"
+        aria-label="Extra small spinner example"
+        size="xl"
+        />
+      </div>
+    </>
+  );
+};
 
 export default JobDetails;

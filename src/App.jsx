@@ -7,6 +7,7 @@ import Blog from "./Components/Blog/Blog";
 import Main from "./Components/Layout/Main";
 import JobDetails from "./Components/JobDetails/JobDetails";
 import Cart from "./Components/Cart/Cart";
+import useLoaderData from "./hooks/useLoderData";
 
 function App() {
   const router = createBrowserRouter([
@@ -38,13 +39,13 @@ function App() {
           element: <JobDetails />,
           loader: async ({ params }) => {
             const id = parseInt(params.jobId);
-            const jobs=await fetch("jobs.json").then(res=>res.json())
-            return { id,jobs };
+            return { id };
           },
         },
         {
-          path:"/cart",
-          element:<Cart/>,
+          path: "/cart",
+          element: <Cart />,
+          loader: useLoaderData,
         },
         {
           path: "/blog",
