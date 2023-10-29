@@ -2,9 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import "./JobDetails.css";
 import { Button, Card, Spinner } from "flowbite-react";
+import { addToItem } from "../../LocalStorage/LocalStorage";
 const JobDetails = () => {
   const { id } = useLoaderData();
   const [job, setJob] = useState([]);
+  const navigate = useNavigate();
+  
+  const handelAddToCart = (job) => {
+    addToItem(job);
+    navigate('/cart');
+  };
 
   useEffect(() => {
     dataFetching();
@@ -82,7 +89,12 @@ const JobDetails = () => {
                 {job?.contact_information?.phone}
               </p>
             </div>
-            <Button className="bg-purple-700 text-white">Applied</Button>
+            <Button
+              onClick={() => handelAddToCart(job)}
+              className="bg-purple-700 text-white"
+            >
+              Applied
+            </Button>
           </Card>
         </div>
       </div>
@@ -90,10 +102,10 @@ const JobDetails = () => {
   ) : (
     <>
       <div className="flex place-content-center my-80">
-      <Spinner
-        className="text-purple-500"
-        aria-label="Extra small spinner example"
-        size="xl"
+        <Spinner
+          className="text-purple-500"
+          aria-label="Extra small spinner example"
+          size="xl"
         />
       </div>
     </>

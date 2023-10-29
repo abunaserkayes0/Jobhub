@@ -7,7 +7,6 @@ import Blog from "./Components/Blog/Blog";
 import Main from "./Components/Layout/Main";
 import JobDetails from "./Components/JobDetails/JobDetails";
 import Cart from "./Components/Cart/Cart";
-import useLoaderData from "./hooks/useLoderData";
 
 function App() {
   const router = createBrowserRouter([
@@ -45,7 +44,6 @@ function App() {
         {
           path: "/cart",
           element: <Cart />,
-          loader: useLoaderData,
         },
         {
           path: "/blog",
