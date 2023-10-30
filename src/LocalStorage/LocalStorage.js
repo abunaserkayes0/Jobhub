@@ -10,15 +10,15 @@ const addToItem = (item) => {
   }
 };
 
-/* const removeItem = (item) => {
+const removeItem = (id) => {
   const exitsItems = getCart();
-  const restItem = exitsItems.find((exitsItem) => exitsItem.id !== item.id);
-  localStorage.setItem("cart", JSON.stringify(restItem));
+  const exitsItem = exitsItems.filter((exitsItem) => exitsItem.id != id);
+  localStorage.setItem("cart", JSON.stringify(exitsItem));
 };
- */
+
 const getCart = () => {
   const cart = localStorage.getItem("cart");
   return JSON.parse(cart);
 };
 
-export { addToItem, getCart };
+export { addToItem, getCart, removeItem };

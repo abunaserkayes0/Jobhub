@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getCart } from "../../LocalStorage/LocalStorage";
+import { getCart, removeItem } from "../../LocalStorage/LocalStorage";
 import SingleCart from "../SingleCart/SingleCart";
 
 const Cart = () => {
@@ -12,7 +12,7 @@ const Cart = () => {
   const handelDeleteToCart = (id) => {
     const restItem = items.filter((item) => item.id != id);
     setItems(restItem);
-    console.log(items);
+    removeItem(id)
   };
 
   return (
