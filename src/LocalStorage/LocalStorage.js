@@ -10,6 +10,12 @@ const addToItem = (item) => {
   }
 };
 
+/* const removeItem = (item) => {
+  const exitsItems = getCart();
+  const restItem = exitsItems.find((exitsItem) => exitsItem.id !== item.id);
+  localStorage.setItem("cart", JSON.stringify(restItem));
+};
+ */
 const getCart = () => {
   const cart = localStorage.getItem("cart");
   return JSON.parse(cart);

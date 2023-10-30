@@ -3,11 +3,17 @@ import { getCart } from "../../LocalStorage/LocalStorage";
 import SingleCart from "../SingleCart/SingleCart";
 
 const Cart = () => {
-  const [items, setItems] = useState([]);
+  const cartElements = getCart();
+  const [items, setItems] = useState(cartElements);
   useEffect(() => {
-    const cartElements = getCart();
     setItems(cartElements);
   }, []);
+
+  const handelDeleteToCart = (id) => {
+    const restItem = items.filter((item) => item.id != id);
+    setItems(restItem);
+    console.log(items);
+  };
 
   return (
     <>
@@ -15,8 +21,12 @@ const Cart = () => {
         <h2 className="text-3xl font-bold text-center py-20">Applied Jobs</h2>
       </div>
       <div>
-        {items.map((singleItem) => (
-          <SingleCart singleItem={singleItem} />
+        {items?.map((singleItem) => (
+          <SingleCart
+            singleItem={singleItem}
+            key={singleItem.id}
+            handelDeleteToCart={handelDeleteToCart}
+          />
         ))}
       </div>
     </>

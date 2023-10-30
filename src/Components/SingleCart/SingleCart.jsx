@@ -1,7 +1,7 @@
 import { Button, Card } from "flowbite-react";
 import React from "react";
 
-const SingleCart = ({ singleItem }) => {
+const SingleCart = ({ singleItem,handelDeleteToCart }) => {
   const {
     id,
     logo,
@@ -12,13 +12,16 @@ const SingleCart = ({ singleItem }) => {
     location,
     salary,
   } = singleItem;
+
+  
+
   return (
     <>
       <Card>
         <section className="flex justify-between">
           <div className="grid grid-cols-2">
             <div className="grid place-content-center">
-              <img className="max-w-xs max-h-xs" src={logo} alt="" />
+              <img className="w-40" src={logo} alt="" />
             </div>
             <div>
               <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -48,7 +51,7 @@ const SingleCart = ({ singleItem }) => {
             </div>
           </div>
           <div className="grid place-content-center">
-            <Button className="bg-purple-700 text-white">Delete</Button>
+            <Button onClick={()=>handelDeleteToCart(id)} className="bg-purple-700 text-white">Delete</Button>
           </div>
         </section>
       </Card>
