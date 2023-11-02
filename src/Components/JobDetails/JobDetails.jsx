@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faDollar,
+  faBriefcase,
+  faLocation,
+  faMailBulk,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
 import "./JobDetails.css";
 import { Button, Card, Spinner } from "flowbite-react";
 import { addToItem } from "../../LocalStorage/LocalStorage";
@@ -7,10 +15,10 @@ const JobDetails = () => {
   const { id } = useLoaderData();
   const [job, setJob] = useState([]);
   const navigate = useNavigate();
-  
+
   const handelAddToCart = (job) => {
     addToItem(job);
-    navigate('/cart');
+    navigate("/cart");
   };
 
   useEffect(() => {
@@ -55,39 +63,48 @@ const JobDetails = () => {
           </p>
         </div>
         <div className="flex place-content-center">
-          <Card className="max-w-sm bg-purple-200">
+          <Card className="max-w-sm bg-purple-200 border border-gray-500 shadow-2xl">
             <div>
               <p className="font-semibold mb-1">Job Details:</p>
               <hr className="border-gray-600 mb-2" />
-              <p className="flex align-middle font-normal text-gray-700 dark:text-gray-400">
-                <img src="https://i.ibb.co/5jCd2V8/calendar.png" alt="" />
-                <b>Salary:</b>
+              <div className="font-normal text-gray-700 dark:text-gray-400">
+                <FontAwesomeIcon className="text-purple-500" icon={faDollar} />
+                <b>Job Title:</b>
                 {job?.job_title}
-              </p>
-              <p className="flex align-middle font-normal text-gray-700 dark:text-gray-400">
-                <img src="https://i.ibb.co/Kq6B9Xn/money.png" alt="" />
-                <b>Job-Title:</b>
+              </div>
+              <div className="font-normal text-gray-700 dark:text-gray-400">
+                <FontAwesomeIcon
+                  className="text-purple-500"
+                  icon={faBriefcase}
+                />
+                <b>Salary:</b>
                 {job?.salary}
-              </p>
+              </div>
             </div>
             <div>
               <p className="font-semibold mb-1">Contact Information:</p>
               <hr className="border-gray-600 mb-2" />
-              <p className="flex align-middle font-normal text-gray-700 dark:text-gray-400">
-                <img src="https://i.ibb.co/qjy9bHG/location.png" alt="" />
+              <div className="font-normal text-gray-700 dark:text-gray-400">
+                <FontAwesomeIcon
+                  className="text-purple-500"
+                  icon={faLocation}
+                />
                 <b>Address:</b>
                 {job?.contact_information?.address}
-              </p>
-              <p className="flex align-middle font-normal text-gray-700 dark:text-gray-400">
-                <img src="https://i.ibb.co/GQCC7Z4/email.png" alt="" />
+              </div>
+              <div className="font-normal text-gray-700 dark:text-gray-400">
+                <FontAwesomeIcon
+                  className="text-purple-500"
+                  icon={faMailBulk}
+                />
                 <b>Email:</b>
                 {job?.contact_information?.email}
-              </p>
-              <p className="flex align-middle font-normal text-gray-700 dark:text-gray-400">
-                <img src="https://i.ibb.co/x59zJWG/phone.png" alt="" />
+              </div>
+              <div className="font-normal text-gray-700 dark:text-gray-400">
+                <FontAwesomeIcon className="text-purple-500" icon={faPhone} />
                 <b>Phone:</b>
                 {job?.contact_information?.phone}
-              </p>
+              </div>
             </div>
             <Button
               onClick={() => handelAddToCart(job)}
