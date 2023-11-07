@@ -1,12 +1,15 @@
 import { Button, Navbar } from "flowbite-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../Auth/AuthProvider";
 
 const Header = () => {
-  const navigate=useNavigate();
+  const { user, logOut } = useContext(AuthContext);
+
   return (
     <div>
       <Navbar rounded>
-        <Navbar.Brand as={Link} onClick={()=>navigate('/')}>
+        <Navbar.Brand>
           <span className="self-center whitespace-nowrap text-xl font-extrabold dark:text-white">
             JobHub
           </span>
@@ -16,9 +19,20 @@ const Header = () => {
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
-          <Link to="/statistics">Statistics</Link>
-          <Link to="/applied-jobs">Applied Jobs</Link>
-          <Link to="/blog">Blog</Link>
+          <Link to="/">Home</Link>
+          {user && (
+            <>
+              {" "}
+              <Link to="/statistics">Statistics</Link>
+              <Link to="/applied-jobs">Applied Jobs</Link>
+              <Link to="/blog">Blog</Link>
+            </>
+          )}
+          {user ? (
+            <button onClick={logOut}>SignOut</button>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
         </Navbar.Collapse>
       </Navbar>
     </div>

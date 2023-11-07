@@ -7,6 +7,10 @@ import Blog from "./Components/Blog/Blog";
 import Main from "./Components/Layout/Main";
 import JobDetails from "./Components/JobDetails/JobDetails";
 import Cart from "./Components/Cart/Cart";
+import Login from "./Auth/Login";
+import SignUp from "./Auth/SignUp";
+import AuthProvider from "./Auth/AuthProvider";
+import PrivetRoute from "./Auth/PrivetRoute";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,11 +31,19 @@ function App() {
         },
         {
           path: "/statistics",
-          element: <Statistics />,
+          element: (
+            <PrivetRoute>
+              <Statistics />
+            </PrivetRoute>
+          ),
         },
         {
           path: "/applied-jobs",
-          element: <Jobs />,
+          element: (
+            <PrivetRoute>
+              <Jobs />
+            </PrivetRoute>
+          ),
         },
         {
           path: "/job/:jobId",
@@ -47,7 +59,19 @@ function App() {
         },
         {
           path: "/blog",
-          element: <Blog />,
+          element: (
+            <PrivetRoute>
+              <Blog />
+            </PrivetRoute>
+          ),
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/signUp",
+          element: <SignUp />,
         },
       ],
     },
@@ -55,7 +79,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </>
   );
 }
